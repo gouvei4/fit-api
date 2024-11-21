@@ -5,6 +5,7 @@ import { UserController } from '../presentation/controllers/user.controller';
 import { CreateUserUseCase } from '../presentation/useCases/create.user.use-case';
 import { UserRepository } from './repositories/user.repository';
 import { GetUserByIdUseCase } from '../presentation/useCases/get-user-by-id.use-case';
+import { UpdateUserUseCase } from '../presentation/useCases/update.user.use-case';
 
 @Module({
   imports: [],
@@ -15,6 +16,7 @@ import { GetUserByIdUseCase } from '../presentation/useCases/get-user-by-id.use-
     UserService,
     CreateUserUseCase,
     GetUserByIdUseCase,
+    UpdateUserUseCase,
   ],
 })
 export class UserModule {}

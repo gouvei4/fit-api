@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsOptional,
@@ -8,15 +9,30 @@ import {
 } from 'class-validator';
 
 export class UpdateUserDto {
+  @ApiProperty({
+    description: 'Nome completo do usuário',
+    example: 'João Silva Teste',
+    required: true,
+  })
   @IsString()
   @IsOptional()
   @Length(3, 50, { message: 'O nome deve ter entre 3 e 50 caracteres.' })
   name?: string;
 
+  @ApiProperty({
+    description: 'Email do usuário (opcional)',
+    example: 'joao.silva99@example.com',
+    required: false,
+  })
   @IsEmail({}, { message: 'O email deve ser válido.' })
   @IsOptional()
   email?: string;
 
+  @ApiProperty({
+    description: 'Senha do usuário',
+    example: 'Senha222',
+    required: true,
+  })
   @IsString()
   @IsNotEmpty({ message: 'A senha é obrigatória.' })
   @Length(8, 30, { message: 'A senha deve ter entre 8 e 30 caracteres.' })

@@ -4,6 +4,8 @@ export class User {
     public name: string,
     public cpf: string,
     public password: string,
-    public email?: string,
+    public email: string,
+    public createdAt: Date,
+    public updatedAt: Date,
   ) {}
 }
