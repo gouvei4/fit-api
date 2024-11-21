@@ -4,12 +4,14 @@ import { User } from '@prisma/client';
 import { CreateUserDto } from '../../domain/dto/create.user.dto';
 import { CreateUserUseCase } from '../../presentation/useCases/create.user.use-case';
 import { PrismaService } from 'src/infra/database/prismaService';
+import { GetUserByIdUseCase } from '../../presentation/useCases/get-user-by-id.use-case';
 
 @Injectable()
 export class UserService {
   constructor(
-    private readonly createUserUseCase: CreateUserUseCase,
     private readonly prismaService: PrismaService,
+    private readonly createUserUseCase: CreateUserUseCase,
+    private readonly getUserByIdUseCase: GetUserByIdUseCase,
   ) {}
 
   async hashPassword(password: string): Promise<string> {
@@ -39,5 +41,9 @@ export class UserService {
     createUserDto.password = hashedPassword;
 
     return this.createUserUseCase.execute(createUserDto);
+  }
+
+  async getUserById(userId: string): Promise<User> {
+    return this.getUserByIdUseCase.execute(userId);
   }
 }

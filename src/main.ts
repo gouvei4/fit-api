@@ -18,7 +18,15 @@ async function bootstrap() {
     .setTitle('API de Usuários')
     .setDescription('API FIT')
     .setVersion('1.0')
-    .addTag('users')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'access-token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

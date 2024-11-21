@@ -24,4 +24,10 @@ export class UserRepository {
       data: createUserDto,
     });
   }
+
+  async findById(id: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
 }
