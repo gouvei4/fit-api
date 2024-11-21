@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String   @id @default(uuid()) @unique
+  name     String
+  cpf      String   @unique
+  password String
+  email    String?  @unique
+  goals    Goal[]
+  meals    Meal[]
+  carbHistory CarbHistory[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Food {
+  id       String   @id @default(uuid()) @unique
+  name     String
+  carbs    Float
+  protein  Float
+  fat      Float
+  calories Float
+  mealEntries MealEntry[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  CarbHistory CarbHistory[]
+}
+
+model Meal {
+  id       String   @id @default(uuid()) @unique
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  name     String
+  date     DateTime
+  entries  MealEntry[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MealEntry {
+  id        String  @id @default(uuid()) @unique
+  mealId    String
+  meal      Meal    @relation(fields: [mealId], references: [id])
+  foodId    String
+  food      Food    @relation(fields: [foodId], references: [id])
+  quantity  Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Goal {
+  id               String  @id @default(uuid()) @unique
+  userId           String
+  user             User    @relation(fields: [userId], references: [id])
+  dailyCarbsGoal   Float
+  dailyCaloriesGoal Float
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CarbHistory {
+  id       String   @id @default(uuid()) @unique
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  foodId   String
+  food     Food     @relation(fields: [foodId], references: [id])
+  quantity Float
+  date     DateTime
+  carbs    Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
