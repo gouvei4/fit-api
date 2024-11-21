@@ -6,6 +6,7 @@ import { CreateUserUseCase } from '../presentation/useCases/create.user.use-case
 import { UserRepository } from './repositories/user.repository';
 import { GetUserByIdUseCase } from '../presentation/useCases/get-user-by-id.use-case';
 import { UpdateUserUseCase } from '../presentation/useCases/update.user.use-case';
+import { HashingService } from 'src/infra/services/hashing.service';
 
 @Module({
   imports: [],
@@ -14,6 +15,7 @@ import { UpdateUserUseCase } from '../presentation/useCases/update.user.use-case
     PrismaService,
     UserRepository,
     UserService,
+    HashingService,
     CreateUserUseCase,
     GetUserByIdUseCase,
     UpdateUserUseCase,

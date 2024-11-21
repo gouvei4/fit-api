@@ -19,14 +19,14 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async create(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('access-token')
   @Get(':id')
-  async getUser(@Param('id') id: string): Promise<User> {
+  async getUser(@Param('id') id: string) {
     return this.userService.getUserById(id);
   }
 

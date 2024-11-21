@@ -19,13 +19,12 @@ export class CreateUserDto {
   name: string;
 
   @ApiProperty({
-    description: 'CPF do usuário',
-    example: '12345678900',
-    required: true,
+    description: 'The CPF of the user in the format XXX.XXX.XXX-XX',
+    example: '123.321.733-38',
   })
   @IsString()
-  @IsNotEmpty({ message: 'O CPF é obrigatório.' })
-  @Matches(/^\d{11}$/, { message: 'O CPF deve conter 11 dígitos numéricos.' })
+  @IsNotEmpty({ message: 'The CPF cannot be empty.' })
+  @Length(11, 14, { message: 'The cpf must be between 11 and 14 character.' })
   cpf: string;
 
   @ApiProperty({
