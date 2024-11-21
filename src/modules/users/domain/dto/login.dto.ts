@@ -1,11 +1,26 @@
-import { IsString, IsNotEmpty, Matches, Length } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsString,
+  IsNotEmpty,
+  Matches,
+  Length,
+  IsEmail,
+} from 'class-validator';
 
 export class LoginDto {
-  @IsString()
-  @IsNotEmpty({ message: 'O CPF é obrigatório.' })
-  @Matches(/^\d{11}$/, { message: 'O CPF deve conter 11 dígitos numéricos.' })
-  cpf: string;
+  @ApiProperty({
+    description: 'Email do usuário (opcional)',
+    example: 'joao.silva@example.com',
+    required: false,
+  })
+  @IsEmail({}, { message: 'O email deve ser válido.' })
+  email: string;
 
+  @ApiProperty({
+    description: 'Senha do usuário',
+    example: 'Senha123',
+    required: true,
+  })
   @IsString()
   @IsNotEmpty({ message: 'A senha é obrigatória.' })
   @Length(8, 30, { message: 'A senha deve ter entre 8 e 30 caracteres.' })

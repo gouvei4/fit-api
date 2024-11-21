@@ -12,7 +12,7 @@ model User {
   name     String
   cpf      String   @unique
   password String
-  email    String?  @unique
+  email    String  @unique
   goals    Goal[]
   meals    Meal[]
   carbHistory CarbHistory[]

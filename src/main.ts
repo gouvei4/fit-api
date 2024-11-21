@@ -16,7 +16,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API de Usuários')
-    .setDescription('API para gerenciamento de usuários')
+    .setDescription('API FIT')
     .setVersion('1.0')
     .addTag('users')
     .build();
