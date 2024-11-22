@@ -16,6 +16,7 @@ export class UpdateUserDto {
   })
   @IsString()
   @IsOptional()
+  @Matches(/^[^0-9]*$/, { message: 'O nome não pode conter números.' })
   @Length(3, 50, { message: 'O nome deve ter entre 3 e 50 caracteres.' })
   name?: string;
 

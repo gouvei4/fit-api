@@ -15,6 +15,7 @@ export class CreateUserDto {
   })
   @IsString()
   @IsNotEmpty({ message: 'O nome é obrigatório.' })
+  @Matches(/^[^0-9]*$/, { message: 'O nome não pode conter números.' })
   @Length(3, 50, { message: 'O nome deve ter entre 3 e 50 caracteres.' })
   name: string;
 
