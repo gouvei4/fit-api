@@ -7,6 +7,7 @@ import { UpdateUserDto } from '../../domain/dto/update.user.dto';
 import { UpdateUserUseCase } from '../../presentation/useCases/update.user.use-case';
 import { UserRepository } from '../../infra/repositories/user.repository';
 import { HashingService } from 'src/infra/services/hashing.service';
+import { DeleteUserUseCase } from '../../presentation/useCases/delete.user.use-case';
 
 @Injectable()
 export class UserService {
@@ -16,6 +17,7 @@ export class UserService {
     private readonly createUserUseCase: CreateUserUseCase,
     private readonly getUserByIdUseCase: GetUserByIdUseCase,
     private readonly updateUserUseCase: UpdateUserUseCase,
+    private readonly deleteUserUseCase: DeleteUserUseCase,
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<User> {
@@ -47,5 +49,9 @@ export class UserService {
 
   async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     return this.updateUserUseCase.execute(id, updateUserDto);
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    return this.deleteUserUseCase.execute(id);
   }
 }

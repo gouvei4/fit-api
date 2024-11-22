@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -10,7 +11,7 @@ import {
 import { User } from '../../domain/entities/user.entity';
 import { UserService } from '../../application/service/user.service';
 import { CreateUserDto } from '../../domain/dto/create.user.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { UpdateUserDto } from '../../domain/dto/update.user.dto';
 
@@ -38,5 +39,18 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
     return this.userService.updateUser(id, updateUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: 'Deleta um usuário pelo ID' })
+  @ApiResponse({ status: 200, description: 'Usuário deletado com sucesso.' })
+  @ApiResponse({ status: 401, description: 'Usuário não autenticado.' })
+  @ApiResponse({ status: 404, description: 'Usuário não encontrado.' })
+  @Delete(':id')
+  async deleteUser(@Param('id') id: string): Promise<{ message: string }> {
+    await this.userService.deleteUser(id);
+    return { message: 'Usuário deletado com sucesso.' };
   }
 }

@@ -7,6 +7,7 @@ import { UserRepository } from './repositories/user.repository';
 import { GetUserByIdUseCase } from '../presentation/useCases/get-user-by-id.use-case';
 import { UpdateUserUseCase } from '../presentation/useCases/update.user.use-case';
 import { HashingService } from 'src/infra/services/hashing.service';
+import { DeleteUserUseCase } from '../presentation/useCases/delete.user.use-case';
 
 @Module({
   imports: [],
@@ -19,6 +20,7 @@ import { HashingService } from 'src/infra/services/hashing.service';
     CreateUserUseCase,
     GetUserByIdUseCase,
     UpdateUserUseCase,
+    DeleteUserUseCase,
   ],
 })
 export class UserModule {}
