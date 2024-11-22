@@ -6,6 +6,7 @@ import { CreateFoodUseCase } from '../presentation/useCases/create-food.use-case
 import { FoodRepository } from './repositories/food.repository';
 import { GetFoodUseCase } from '../presentation/useCases/get.food.use-case';
 import { UpdateFoodUseCase } from '../presentation/useCases/update-food.use-case';
+import { DeleteFoodUseCase } from '../presentation/useCases/delete-food.use-case';
 
 @Module({
   controllers: [FoodController],
@@ -16,6 +17,7 @@ import { UpdateFoodUseCase } from '../presentation/useCases/update-food.use-case
     CreateFoodUseCase,
     GetFoodUseCase,
     UpdateFoodUseCase,
+    DeleteFoodUseCase,
   ],
 })
 export class FoodModule {}

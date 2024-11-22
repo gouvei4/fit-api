@@ -8,6 +8,7 @@ import {
   Param,
   NotFoundException,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import {
@@ -120,5 +121,28 @@ export class FoodController {
       throw new NotFoundException('Food not found');
     }
     return food;
+  }
+
+  @ApiOperation({
+    summary: 'Delete a food by ID',
+    description: 'Deletes a food item from the database using its unique ID.',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    description: 'Unique identifier of the food to be deleted',
+    example: '12345',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The food item was successfully deleted.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Food with the given ID was not found.',
+  })
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<void> {
+    await this.foodService.deleteFood(id);
   }
 }

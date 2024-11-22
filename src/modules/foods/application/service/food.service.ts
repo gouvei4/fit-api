@@ -4,12 +4,14 @@ import { FoodRepository } from '../../infra/repositories/food.repository';
 import { GetFoodUseCase } from '../../presentation/useCases/get.food.use-case';
 import { Food } from '../../domain/entities/food.entity';
 import { UpdateFoodDto } from '../../domain/dto/update-food.dto';
+import { DeleteFoodUseCase } from '../../presentation/useCases/delete-food.use-case';
 
 @Injectable()
 export class FoodService {
   constructor(
     private readonly foodRepository: FoodRepository,
     private readonly foodUseCase: GetFoodUseCase,
+    private readonly deleteFoodUseCase: DeleteFoodUseCase,
   ) {}
 
   async createFood(createFoodDto: CreateFoodDto, userId: string) {
@@ -29,5 +31,9 @@ export class FoodService {
     updateFoodDto: UpdateFoodDto,
   ): Promise<CreateFoodDto> {
     return this.foodRepository.updateFood(id, updateFoodDto);
+  }
+
+  async deleteFood(id: string): Promise<void> {
+    await this.deleteFoodUseCase.execute(id);
   }
 }

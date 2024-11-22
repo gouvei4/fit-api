@@ -71,4 +71,13 @@ export class FoodRepository {
     });
     return updatedFood;
   }
+
+  async deleteById(id: string): Promise<void> {
+    await this.prisma.food.delete({ where: { id } });
+  }
+
+  async existsById(id: string): Promise<boolean> {
+    const count = await this.prisma.food.count({ where: { id } });
+    return count > 0;
+  }
 }
