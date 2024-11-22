@@ -8,39 +8,44 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(uuid()) @unique
-  name     String
-  cpf      String   @unique
-  password String
-  email    String  @unique
-  goals    Goal[]
-  meals    Meal[]
+  id        String   @id @default(uuid()) @unique
+  name      String
+  cpf       String   @unique
+  password  String
+  email     String   @unique
+  food      Food[]   
+  goals     Goal[]
+  meals     Meal[]
   carbHistory CarbHistory[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Food {
-  id       String   @id @default(uuid()) @unique
-  name     String
-  carbs    Float
-  protein  Float
-  fat      Float
-  calories Float
-  mealEntries MealEntry[]
+  id        String   @id @default(uuid()) @unique
+  name      String
+  carbs     Float
+  protein   Float
+  fat       Float
+  calories  Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  userId    String   
+  user      User     @relation(fields: [userId], references: [id])
+
   CarbHistory CarbHistory[]
+
+  MealEntry MealEntry[]
 }
 
 model Meal {
-  id       String   @id @default(uuid()) @unique
-  userId   String
-  user     User     @relation(fields: [userId], references: [id])
-  name     String
-  date     DateTime
-  entries  MealEntry[]
+  id        String   @id @default(uuid()) @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  name      String
+  date      DateTime
+  entries   MealEntry[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -78,3 +83,4 @@ model CarbHistory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
