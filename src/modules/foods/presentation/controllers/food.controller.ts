@@ -123,6 +123,8 @@ export class FoodController {
     return food;
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
   @ApiOperation({
     summary: 'Delete a food by ID',
     description: 'Deletes a food item from the database using its unique ID.',
