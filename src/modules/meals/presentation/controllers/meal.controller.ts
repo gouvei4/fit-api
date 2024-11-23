@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -16,6 +17,7 @@ import {
   ApiResponse,
   ApiOkResponse,
   ApiNotFoundResponse,
+  ApiParam,
 } from '@nestjs/swagger';
 import { MealService } from '../../application/service/meal.service';
 import { CreateMealDto } from '../../domain/dto/create.meal.dto';
@@ -75,6 +77,8 @@ export class MealController {
     return this.mealService.getMealById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
   @Put(':id')
   @ApiOperation({ summary: 'Atualizar uma refeição' })
   @ApiOkResponse({
@@ -88,5 +92,30 @@ export class MealController {
     @Body() updateMealDto: UpdateMealDto,
   ): Promise<Meal> {
     return this.mealService.updateMeal(id, updateMealDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @ApiOperation({
+    summary: 'Delete a meal by ID',
+    description: 'Deletes a meal item from the database using its unique ID.',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    description: 'Unique identifier of the meal to be deleted',
+    example: '2f1e8d60-fc1b-11ec-b939-0242ac120002',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'The meal item was successfully deleted.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Meal with the given ID was not found.',
+  })
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<void> {
+    await this.mealService.deleteMeal(id);
   }
 }

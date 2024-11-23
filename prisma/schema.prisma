@@ -40,26 +40,27 @@ model Food {
 }
 
 model Meal {
-  id        String   @id @default(uuid()) @unique
+  id        String       @id @default(uuid()) @unique
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User         @relation(fields: [userId], references: [id])
   name      String
   date      DateTime
   entries   MealEntry[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 }
 
 model MealEntry {
   id        String  @id @default(uuid()) @unique
   mealId    String
-  meal      Meal    @relation(fields: [mealId], references: [id])
+  meal      Meal    @relation(fields: [mealId], references: [id], onDelete: Cascade)
   foodId    String
   food      Food    @relation(fields: [foodId], references: [id])
   quantity  Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 
 model Goal {
   id               String  @id @default(uuid()) @unique

@@ -8,6 +8,7 @@ import { GetMealUseCase } from '../../presentation/useCases/get.meal.use-case';
 import { GetMealByIdUseCase } from '../../presentation/useCases/get.meal.byid.use-case';
 import { UpdateMealDto } from '../../domain/dto/update.meal.dto';
 import { UpdateMealUseCase } from '../../presentation/useCases/update.meal.usecase';
+import { DeleteMealUseCase } from '../../presentation/useCases/delete.meal.use-case';
 
 @Injectable()
 export class MealService {
@@ -16,6 +17,7 @@ export class MealService {
     private readonly mealUseCase: GetMealUseCase,
     private readonly getMealByIdUseCase: GetMealByIdUseCase,
     private readonly updateMealUseCase: UpdateMealUseCase,
+    private readonly deleteMealUseCase: DeleteMealUseCase,
   ) {}
 
   async createMeal(createMealDto: CreateMealDto): Promise<Meal> {
@@ -75,5 +77,9 @@ export class MealService {
       }
       throw error;
     }
+  }
+
+  async deleteMeal(id: string): Promise<void> {
+    await this.deleteMealUseCase.execute(id);
   }
 }

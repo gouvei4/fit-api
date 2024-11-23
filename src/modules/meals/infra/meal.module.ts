@@ -7,6 +7,7 @@ import { MealRepository } from './repository/meal.repository';
 import { GetMealUseCase } from '../presentation/useCases/get.meal.use-case';
 import { GetMealByIdUseCase } from '../presentation/useCases/get.meal.byid.use-case';
 import { UpdateMealUseCase } from '../presentation/useCases/update.meal.usecase';
+import { DeleteMealUseCase } from '../presentation/useCases/delete.meal.use-case';
 
 @Module({
   controllers: [MealController],
@@ -18,6 +19,7 @@ import { UpdateMealUseCase } from '../presentation/useCases/update.meal.usecase'
     GetMealUseCase,
     GetMealByIdUseCase,
     UpdateMealUseCase,
+    DeleteMealUseCase,
   ],
 })
 export class MealModule {}
