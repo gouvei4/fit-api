@@ -5,6 +5,7 @@ import { MealController } from '../presentation/controllers/meal.controller';
 import { CreateMealUseCase } from '../presentation/useCases/create-meal.use-case';
 import { MealRepository } from './repository/meal.repository';
 import { GetMealUseCase } from '../presentation/useCases/get.meal.use-case';
+import { GetMealByIdUseCase } from '../presentation/useCases/get.meal.byid.use-case';
 
 @Module({
   controllers: [MealController],
@@ -14,6 +15,7 @@ import { GetMealUseCase } from '../presentation/useCases/get.meal.use-case';
     MealRepository,
     CreateMealUseCase,
     GetMealUseCase,
+    GetMealByIdUseCase,
   ],
 })
 export class MealModule {}

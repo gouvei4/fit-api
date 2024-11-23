@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import {
   ApiTags,
   ApiCreatedResponse,
@@ -6,6 +6,8 @@ import {
   ApiOperation,
   ApiBearerAuth,
   ApiResponse,
+  ApiOkResponse,
+  ApiNotFoundResponse,
 } from '@nestjs/swagger';
 import { MealService } from '../../application/service/meal.service';
 import { CreateMealDto } from '../../domain/dto/create.meal.dto';
@@ -47,5 +49,20 @@ export class MealController {
     return meals.map((meal) => ({
       ...meal,
     }));
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @Get(':id')
+  @ApiOperation({ summary: 'Obter detalhes de uma refeição específica' })
+  @ApiOkResponse({
+    description: 'Detalhes da refeição obtidos com sucesso.',
+    type: Meal,
+  })
+  @ApiNotFoundResponse({
+    description: 'Refeição não encontrada.',
+  })
+  async getMealById(@Param('id') id: string): Promise<Meal> {
+    return this.mealService.getMealById(id);
   }
 }

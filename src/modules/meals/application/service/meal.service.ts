@@ -1,16 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { CreateMealDto } from '../../domain/dto/create.meal.dto';
 import { Meal } from '../../domain/entities/meal.entity';
 import { MealEntry } from '../../domain/entities/meal.entry.entity';
 import { MealRepository } from '../../infra/repository/meal.repository';
 import { GetMealUseCase } from '../../presentation/useCases/get.meal.use-case';
+import { GetMealByIdUseCase } from '../../presentation/useCases/get.meal.byid.use-case';
 
 @Injectable()
 export class MealService {
   constructor(
     private readonly mealRepository: MealRepository,
     private readonly mealUseCase: GetMealUseCase,
+    private readonly getMealByIdUseCase: GetMealByIdUseCase,
   ) {}
 
   async createMeal(createMealDto: CreateMealDto): Promise<Meal> {
@@ -48,5 +50,16 @@ export class MealService {
 
   async getAllMeals(): Promise<Meal[]> {
     return this.mealUseCase.getAllMeals();
+  }
+
+  async getMealById(id: string): Promise<Meal> {
+    try {
+      return await this.getMealByIdUseCase.execute(id);
+    } catch (error) {
+      if (error.message === 'Refeição não encontrada.') {
+        throw new NotFoundException(error.message);
+      }
+      throw error;
+    }
   }
 }

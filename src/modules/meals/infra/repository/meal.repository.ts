@@ -74,4 +74,33 @@ export class MealRepository {
         ),
     );
   }
+
+  async findById(id: string): Promise<Meal | null> {
+    const meal = await this.prisma.meal.findUnique({
+      where: { id },
+      include: { entries: { include: { food: true } } },
+    });
+
+    if (!meal) return null;
+
+    return new Meal(
+      meal.id,
+      meal.userId,
+      meal.name,
+      meal.date,
+      meal.entries.map(
+        (entry) =>
+          new MealEntry(
+            entry.id,
+            entry.foodId,
+            entry.mealId,
+            entry.quantity,
+            entry.createdAt,
+            entry.updatedAt,
+          ),
+      ),
+      meal.createdAt,
+      meal.updatedAt,
+    );
+  }
 }
