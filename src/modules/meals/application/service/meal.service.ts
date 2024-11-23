@@ -6,6 +6,8 @@ import { MealEntry } from '../../domain/entities/meal.entry.entity';
 import { MealRepository } from '../../infra/repository/meal.repository';
 import { GetMealUseCase } from '../../presentation/useCases/get.meal.use-case';
 import { GetMealByIdUseCase } from '../../presentation/useCases/get.meal.byid.use-case';
+import { UpdateMealDto } from '../../domain/dto/update.meal.dto';
+import { UpdateMealUseCase } from '../../presentation/useCases/update.meal.usecase';
 
 @Injectable()
 export class MealService {
@@ -13,6 +15,7 @@ export class MealService {
     private readonly mealRepository: MealRepository,
     private readonly mealUseCase: GetMealUseCase,
     private readonly getMealByIdUseCase: GetMealByIdUseCase,
+    private readonly updateMealUseCase: UpdateMealUseCase,
   ) {}
 
   async createMeal(createMealDto: CreateMealDto): Promise<Meal> {
@@ -55,6 +58,17 @@ export class MealService {
   async getMealById(id: string): Promise<Meal> {
     try {
       return await this.getMealByIdUseCase.execute(id);
+    } catch (error) {
+      if (error.message === 'Refeição não encontrada.') {
+        throw new NotFoundException(error.message);
+      }
+      throw error;
+    }
+  }
+
+  async updateMeal(id: string, updateMealDto: UpdateMealDto): Promise<Meal> {
+    try {
+      return await this.updateMealUseCase.execute(id, updateMealDto);
     } catch (error) {
       if (error.message === 'Refeição não encontrada.') {
         throw new NotFoundException(error.message);

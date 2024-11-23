@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { PrismaService } from 'src/infra/database/prismaService';
 import { MealService } from '../application/service/meal.service';
 import { MealController } from '../presentation/controllers/meal.controller';
-import { CreateMealUseCase } from '../presentation/useCases/create-meal.use-case';
+import { CreateMealUseCase } from '../presentation/useCases/create.meal.use-case';
 import { MealRepository } from './repository/meal.repository';
 import { GetMealUseCase } from '../presentation/useCases/get.meal.use-case';
 import { GetMealByIdUseCase } from '../presentation/useCases/get.meal.byid.use-case';
+import { UpdateMealUseCase } from '../presentation/useCases/update.meal.usecase';
 
 @Module({
   controllers: [MealController],
@@ -16,6 +17,7 @@ import { GetMealByIdUseCase } from '../presentation/useCases/get.meal.byid.use-c
     CreateMealUseCase,
     GetMealUseCase,
     GetMealByIdUseCase,
+    UpdateMealUseCase,
   ],
 })
 export class MealModule {}

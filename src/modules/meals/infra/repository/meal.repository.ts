@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/infra/database/prismaService';
 import { Meal } from '../../domain/entities/meal.entity';
 import { MealEntry } from '../../domain/entities/meal.entry.entity';
+import { UpdateMealDto } from '../../domain/dto/update.meal.dto';
 
 @Injectable()
 export class MealRepository {
@@ -102,5 +103,26 @@ export class MealRepository {
       meal.createdAt,
       meal.updatedAt,
     );
+  }
+
+  async update(id: string, updateMealDto: UpdateMealDto): Promise<Meal> {
+    const updatedMeal = await this.prisma.meal.update({
+      where: { id },
+      data: {
+        name: updateMealDto.name,
+        date: updateMealDto.date ? new Date(updateMealDto.date) : undefined,
+        entries: updateMealDto.entries
+          ? {
+              deleteMany: {},
+              create: updateMealDto.entries.map((entry) => ({
+                foodId: entry.foodId,
+                quantity: entry.quantity,
+              })),
+            }
+          : undefined,
+      },
+      include: { entries: true },
+    });
+    return updatedMeal;
   }
 }
