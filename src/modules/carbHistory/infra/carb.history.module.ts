@@ -1,0 +1,17 @@
+import { Module } from '@nestjs/common';
+import { CarbHistoryController } from '../presentation/controllers/carb.history.controller';
+import { PrismaService } from 'src/infra/database/prismaService';
+import { CarbHistoryService } from '../application/service/carb.history.service';
+import { CreateCarbHistoryUseCase } from '../presentation/useCases/create.carb.history.use-case';
+import { CarbHistoryRepository } from './repositories/carb-history.repository';
+
+@Module({
+  controllers: [CarbHistoryController],
+  providers: [
+    PrismaService,
+    CarbHistoryService,
+    CreateCarbHistoryUseCase,
+    CarbHistoryRepository,
+  ],
+})
+export class CarbHistoryModule {}

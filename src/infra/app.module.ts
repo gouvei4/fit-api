@@ -6,6 +6,7 @@ import { AuthModule } from 'src/auth/auth.module';
 import { FoodModule } from 'src/modules/foods/infra/food.module';
 import { MealModule } from 'src/modules/meals/infra/meal.module';
 import { GoalModule } from 'src/modules/goals/infra/goal.module';
+import { CarbHistoryModule } from 'src/modules/carbHistory/infra/carb.history.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { GoalModule } from 'src/modules/goals/infra/goal.module';
     FoodModule,
     MealModule,
     GoalModule,
+    CarbHistoryModule,
   ],
   providers: [PrismaService],
   exports: [PrismaService],
