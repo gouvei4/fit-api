@@ -25,4 +25,8 @@ export class GoalRepository {
       prismaGoal.updatedAt,
     );
   }
+
+  async findAll(): Promise<Goal[]> {
+    return this.prisma.goal.findMany();
+  }
 }
