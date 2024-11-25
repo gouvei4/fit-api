@@ -46,4 +46,10 @@ export class GoalRepository {
       data: createOrUpdateGoalDto,
     });
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.goal.delete({
+      where: { id },
+    });
+  }
 }

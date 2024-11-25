@@ -5,6 +5,7 @@ import { GoalController } from '../presentation/controllers/goal.controller';
 import { CreateGoalUseCase } from '../presentation/useCases/create.goal.use-case';
 import { GoalRepository } from './repository/goal.repository';
 import { UpdateGoalUseCase } from '../presentation/useCases/update.goal.use-case';
+import { DeleteGoalUseCase } from '../presentation/useCases/delete.goal.use-case';
 
 @Module({
   imports: [],
@@ -15,6 +16,7 @@ import { UpdateGoalUseCase } from '../presentation/useCases/update.goal.use-case
     GoalRepository,
     CreateGoalUseCase,
     UpdateGoalUseCase,
+    DeleteGoalUseCase,
   ],
 })
 export class GoalModule {}

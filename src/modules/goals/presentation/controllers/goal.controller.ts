@@ -6,6 +6,7 @@ import {
   UseGuards,
   Param,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CreateGoalDto } from '../../domain/dto/create.goal.dto';
@@ -44,6 +45,8 @@ export class GoalController {
     return this.goalService.getAllGoals();
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
   @Put(':id')
   @ApiOperation({ summary: 'Atualizar um objetivo nutricional' })
   @ApiResponse({
@@ -60,5 +63,21 @@ export class GoalController {
     @Body() updateGoalDto: CreateOrUpdateGoalDto,
   ): Promise<Goal> {
     return this.goalService.updateGoal(id, updateGoalDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('access-token')
+  @Delete(':id')
+  @ApiOperation({ summary: 'Deletar um objetivo nutricional' })
+  @ApiResponse({
+    status: 200,
+    description: 'Objetivo nutricional deletado com sucesso',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Objetivo nutricional não encontrado',
+  })
+  async deleteGoal(@Param('id') id: string): Promise<void> {
+    await this.goalService.deleteGoal(id);
   }
 }
