@@ -63,14 +63,15 @@ model MealEntry {
 
 
 model Goal {
-  id               String  @id @default(uuid()) @unique
-  userId           String
-  user             User    @relation(fields: [userId], references: [id])
-  dailyCarbsGoal   Float
+  id                String   @id @default(uuid()) @unique
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id])
+  dailyCarbsGoal    Float
   dailyCaloriesGoal Float
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }
+
 
 model CarbHistory {
   id       String   @id @default(uuid()) @unique

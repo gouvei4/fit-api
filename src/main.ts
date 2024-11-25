@@ -15,7 +15,7 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('API de Usuários')
+    .setTitle('API FIT')
     .setDescription('API FIT')
     .setVersion('1.0')
     .addBearerAuth(

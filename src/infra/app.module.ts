@@ -5,9 +5,17 @@ import { UserModule } from 'src/modules/users/infra/user.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { FoodModule } from 'src/modules/foods/infra/food.module';
 import { MealModule } from 'src/modules/meals/infra/meal.module';
+import { GoalModule } from 'src/modules/goals/infra/goal.module';
 
 @Module({
-  imports: [DatabaseModule, AuthModule, UserModule, FoodModule, MealModule],
+  imports: [
+    DatabaseModule,
+    AuthModule,
+    UserModule,
+    FoodModule,
+    MealModule,
+    GoalModule,
+  ],
   providers: [PrismaService],
   exports: [PrismaService],
 })
