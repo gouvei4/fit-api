@@ -19,6 +19,8 @@ model User {
   carbHistory CarbHistory[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  CarbReport CarbReport[]
 }
 
 model Food {
@@ -86,3 +88,14 @@ model CarbHistory {
   updatedAt DateTime @updatedAt
 }
 
+model CarbReport {
+  id            String   @id @default(uuid()) @unique
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  startDate     DateTime
+  endDate       DateTime
+  totalCarbs    Float
+  totalCalories Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
