@@ -4,6 +4,7 @@ import { PrismaService } from 'src/infra/database/prismaService';
 import { CarbHistoryService } from '../application/service/carb.history.service';
 import { CreateCarbHistoryUseCase } from '../presentation/useCases/create.carb.history.use-case';
 import { CarbHistoryRepository } from './repositories/carb-history.repository';
+import { GetCarbHistoryUseCase } from '../presentation/useCases/get.carb.history.use-case';
 
 @Module({
   controllers: [CarbHistoryController],
@@ -12,6 +13,7 @@ import { CarbHistoryRepository } from './repositories/carb-history.repository';
     CarbHistoryService,
     CreateCarbHistoryUseCase,
     CarbHistoryRepository,
+    GetCarbHistoryUseCase,
   ],
 })
 export class CarbHistoryModule {}

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiOperation } from '@nestjs/swagger';
 import { CreateCarbHistoryDto } from '../../domain/dto/create.carb.history.dto';
 import { CarbHistory } from '../../domain/entities/carb-history.entity';
@@ -21,5 +21,17 @@ export class CarbHistoryController {
     @Body() createCarbHistoryDto: CreateCarbHistoryDto,
   ): Promise<CarbHistory> {
     return this.carbHistoryService.create(createCarbHistoryDto);
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Obter o histórico de ingestão de carboidratos' })
+  @ApiResponse({
+    status: 200,
+    description: 'Histórico de carboidratos encontrado',
+    type: [CarbHistory],
+  })
+  @ApiResponse({ status: 400, description: 'Parâmetros inválidos' })
+  async findAll(@Query() query: CreateCarbHistoryDto): Promise<CarbHistory[]> {
+    return this.carbHistoryService.findAll(query);
   }
 }
