@@ -5,6 +5,7 @@ import { CarbHistoryService } from '../application/service/carb.history.service'
 import { CreateCarbHistoryUseCase } from '../presentation/useCases/create.carb.history.use-case';
 import { CarbHistoryRepository } from './repositories/carb-history.repository';
 import { GetCarbHistoryUseCase } from '../presentation/useCases/get.carb.history.use-case';
+import { DeleteCarbHistoryUseCase } from '../presentation/useCases/delete.carb.use-case';
 
 @Module({
   controllers: [CarbHistoryController],
@@ -14,6 +15,7 @@ import { GetCarbHistoryUseCase } from '../presentation/useCases/get.carb.history
     CreateCarbHistoryUseCase,
     CarbHistoryRepository,
     GetCarbHistoryUseCase,
+    DeleteCarbHistoryUseCase,
   ],
 })
 export class CarbHistoryModule {}

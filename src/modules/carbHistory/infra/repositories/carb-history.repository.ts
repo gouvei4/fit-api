@@ -58,4 +58,10 @@ export class CarbHistoryRepository {
         ),
     );
   }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.carbHistory.delete({
+      where: { id },
+    });
+  }
 }
