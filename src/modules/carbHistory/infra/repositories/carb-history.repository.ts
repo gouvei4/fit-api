@@ -32,15 +32,13 @@ export class CarbHistoryRepository {
   }
 
   async findAll(dto: GetCarbHistoryDto): Promise<CarbHistory[]> {
-    const where = {};
-
-    if (dto.userId) {
-      where['userId'] = dto.userId;
-    }
-
-    if (dto.date) {
-      where['date'] = new Date(dto.date);
-    }
+    const where = Object.fromEntries(
+      Object.entries({
+        userId: dto.userId,
+        foodId: dto.foodId,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      }).filter(([_, value]) => value !== undefined),
+    );
 
     const carbHistories = await this.prisma.carbHistory.findMany({
       where,

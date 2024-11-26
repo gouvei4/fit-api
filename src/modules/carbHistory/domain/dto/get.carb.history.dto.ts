@@ -1,4 +1,4 @@
-import { IsUUID, IsOptional, IsNumber, IsString, Min } from 'class-validator';
+import { IsUUID, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class GetCarbHistoryDto {
@@ -17,24 +17,4 @@ export class GetCarbHistoryDto {
   @IsOptional()
   @IsUUID()
   foodId?: string;
-
-  @ApiProperty({ description: 'Quantidade consumida', example: 300 })
-  @IsOptional()
-  @IsNumber()
-  @Min(1, { message: 'A quantidade deve ser positiva' })
-  quantity?: number;
-
-  @ApiProperty({ description: 'Data de consumo', example: '2024-11-26' })
-  @IsOptional()
-  @IsString()
-  date?: string;
-
-  @ApiProperty({
-    description: 'Quantidade de carboidratos consumidos',
-    example: 50,
-  })
-  @IsOptional()
-  @IsNumber()
-  @Min(1, { message: 'A quantidade de carboidratos deve ser positiva' })
-  carbs?: number;
 }
