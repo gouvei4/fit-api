@@ -36,7 +36,10 @@ export class CreateCarbHistoryDto {
   quantity: number;
 
   @IsNotEmpty()
-  @IsDateString({}, { message: 'A data deve ser uma string de data válida' })
+  @IsDateString(
+    {},
+    { message: 'A data deve ser uma string de data válida (ISO 8601)' },
+  )
   @ApiProperty({
     description: 'Data de consumo do alimento',
     example: '2024-11-24',
