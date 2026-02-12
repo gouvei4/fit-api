@@ -1,85 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# FitProject API 🍎💪
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O **FitProject** é uma API robusta de gerenciamento nutricional desenvolvida com **NestJS**. O sistema foca no controle rigoroso da ingestão de carboidratos, permitindo que usuários gerenciem sua dieta, estabeleçam metas e acompanhem sua evolução através de relatórios inteligentes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Esta API foi construída seguindo padrões de **Clean Code**, modularização e segurança, estando pronta para suportar aplicações de saúde e bem-estar (HealthTech).
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🚀 Tecnologias e Ferramentas
 
-## Project setup
+O projeto utiliza um stack moderno focado em performance e tipagem forte:
 
-```bash
-$ npm install
-```
+- **Framework:** [NestJS](https://nestjs.com/) (TypeScript)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Banco de Dados:** MySQL (via `mysql2`)
+- **Autenticação:** Passport.js com estratégia **JWT** (JSON Web Token)
+- **Segurança:** - `bcrypt` para hashing de senhas.
+  - `helmet` para proteção de headers HTTP.
+  - `class-validator` para validação rigorosa de payloads.
+- **Documentação:** Swagger (OpenAPI)
+- **Logs:** Pino-pretty
+- **Testes:** Jest e Supertest
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ npm run start
+## 📋 Funcionalidades da API
 
-# watch mode
-$ npm run start:dev
+### 🔐 Segurança e Usuários
+- **Registro e Autenticação:** Criação de conta com senhas criptografadas e login com emissão de token JWT.
+- **Proteção de Rotas:** Uso de `JwtAuthGuard` para garantir que apenas usuários autenticados acessem dados sensíveis.
+- **Gestão de Perfil:** CRUD completo de informações do usuário.
 
-# production mode
-$ npm run start:prod
-```
+### 🍱 Gestão Nutricional
+- **Foods:** Banco de dados de alimentos com valores nutricionais.
+- **Meals:** Registro de refeições compostas por diferentes alimentos.
+- **Carb History:** Histórico cronológico de consumo de carboidratos.
 
-## Run tests
+### 📈 Metas e Relatórios
+- **Goals:** Definição de objetivos diários de ingestão.
+- **Intelligent Reports:** Endpoints dedicados para extração de métricas de consumo:
+  - Consumo Diário.
+  - Consumo Semanal.
+  - Consumo Mensal.
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## ⚙️ Como Instalar e Rodar
 
-# test coverage
-$ npm run test:cov
-```
+1. **Clone o repositório:**
+   bash
+  `git clone [https://github.com/gouvei4/fit-project.git](https://github.com/gouvei4/fit-project.git)
+   cd fit-project`
 
-## Resources
+2. **Instale as dependências:**
+  `npm install`
 
-Check out a few resources that may come in handy when working with NestJS:
+3. **Configure as variáveis de ambiente (.env):**
+    Crie um arquivo .env na raiz do projeto e preencha conforme sua configuração local:
+   `DATABASE_URL="mysql://usuario:senha@localhost:3306/fit_project_db"
+    JWT_SECRET="sua_chave_secreta_aqui"`
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+4. **Prepare o Banco de Dados (Prisma)**
+   Execute as migrations para criar as tabelas no MySQL e gerar o Prisma Client:
+   `npx prisma migrate dev --name init
+    npx prisma generate`
+   
+5. **Inicie a aplicação**
+    # Modo de desenvolvimento
+      `npm run start:dev`
 
-## Support
+    # Modo de produção
+      `npm run build
+      npm run start:prod`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+📖 Documentação (Swagger)
+A API conta com documentação interativa que pode ser acessada através da rota:
 
-## Stay in touch
+👉` http://localhost:3000/api`
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Lá você encontrará todos os modelos de dados, exemplos de requisição e poderá testar os endpoints utilizando o Bearer Token gerado no login.
 
-## License
+🧪 Estrutura de Testes
+O projeto utiliza Jest para garantir a confiabilidade das regras de negócio:
+  # Executar todos os testes
+    npm run test
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+# Executar testes end-to-end (E2E)
+    npm run test:e2e
+
+# Cobertura de código (Coverage)
+    npm run test:cov
+
+✨ Autor
+Afonso Gouveia Engenheiro de Software focado no desenvolvimento de aplicações escaláveis e seguras.
