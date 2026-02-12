@@ -72,23 +72,23 @@ O projeto utiliza um stack moderno focado em performance e tipagem forte:
       `npm run build
       npm run start:prod`
 
-📖 Documentação (Swagger)
-A API conta com documentação interativa que pode ser acessada através da rota:
+📖 # Documentação (Swagger)
+     A API conta com documentação interativa que pode ser acessada através da rota:
 
-👉` http://localhost:3000/api`
+    👉` http://localhost:3000/api`
 
-Lá você encontrará todos os modelos de dados, exemplos de requisição e poderá testar os endpoints utilizando o Bearer Token gerado no login.
+    Lá você encontrará todos os modelos de dados, exemplos de requisição e poderá testar os endpoints utilizando o Bearer Token gerado no login.
 
-🧪 Estrutura de Testes
-O projeto utiliza Jest para garantir a confiabilidade das regras de negócio:
-  # Executar todos os testes
-    npm run test
+🧪 # Estrutura de Testes
+      O projeto utiliza Jest para garantir a confiabilidade das regras de negócio:
+      # Executar todos os testes
+      `npm run test`
 
-# Executar testes end-to-end (E2E)
-    npm run test:e2e
+      # Executar testes end-to-end (E2E)
+      npm run test:e2e
 
-# Cobertura de código (Coverage)
-    npm run test:cov
+      # Cobertura de código (Coverage)
+       npm run test:cov
 
-✨ Autor
-Afonso Gouveia Engenheiro de Software focado no desenvolvimento de aplicações escaláveis e seguras.
+  ✨ # Autor
+      Afonso Gouveia Engenheiro de Software focado no desenvolvimento de aplicações escaláveis e seguras.
