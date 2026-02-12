@@ -145,7 +145,7 @@ npm run test:cov
 ## 👨‍💻 Autor
 
 **Afonso Gouveia**\
-Engenheiro de Software focado em backend com Node.js, arquitetura
+Engenheiro de Software focado em backend, arquitetura
 escalável e aplicações seguras.
 
 GitHub: https://github.com/gouvei4
