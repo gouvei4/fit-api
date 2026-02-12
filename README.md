@@ -1,94 +1,151 @@
-# FitProject API 🍎💪
+# 🍎 FitProject API
 
-O **FitProject** é uma API robusta de gerenciamento nutricional desenvolvida com **NestJS**. O sistema foca no controle rigoroso da ingestão de carboidratos, permitindo que usuários gerenciem sua dieta, estabeleçam metas e acompanhem sua evolução através de relatórios inteligentes.
+![NestJS](https://img.shields.io/badge/NestJS-Framework-red)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strongly%20Typed-blue)
+![Prisma](https://img.shields.io/badge/ORM-Prisma-2D3748)
+![MySQL](https://img.shields.io/badge/Database-MySQL-00758F)
+![JWT](https://img.shields.io/badge/Auth-JWT-black)
+![Tests](https://img.shields.io/badge/Tests-Jest%20%7C%20Supertest-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-Esta API foi construída seguindo padrões de **Clean Code**, modularização e segurança, estando pronta para suportar aplicações de saúde e bem-estar (HealthTech).
+API de gerenciamento nutricional desenvolvida com **NestJS
+(TypeScript)**, focada no controle inteligente da ingestão de
+carboidratos.
 
----
+------------------------------------------------------------------------
 
-## 🚀 Tecnologias e Ferramentas
+## 🚀 Sobre o Projeto
 
-O projeto utiliza um stack moderno focado em performance e tipagem forte:
+O **FitProject** é uma API backend voltada para aplicações HealthTech,
+permitindo que usuários:
 
-- **Framework:** [NestJS](https://nestjs.com/) (TypeScript)
-- **ORM:** [Prisma](https://www.prisma.io/)
-- **Banco de Dados:** MySQL (via `mysql2`)
-- **Autenticação:** Passport.js com estratégia **JWT** (JSON Web Token)
-- **Segurança:** - `bcrypt` para hashing de senhas.
-  - `helmet` para proteção de headers HTTP.
-  - `class-validator` para validação rigorosa de payloads.
-- **Documentação:** Swagger (OpenAPI)
-- **Logs:** Pino-pretty
-- **Testes:** Jest e Supertest
+-   Registrem refeições
+-   Definam metas nutricionais diárias
+-   Acompanhem consumo de carboidratos
+-   Visualizem relatórios inteligentes (diário, semanal e mensal)
 
----
+O projeto foi construído seguindo princípios de:
 
-## 📋 Funcionalidades da API
+-   ✅ Clean Code\
+-   ✅ Arquitetura modular\
+-   ✅ Boas práticas de segurança\
+-   ✅ Escalabilidade e manutenibilidade
 
-### 🔐 Segurança e Usuários
-- **Registro e Autenticação:** Criação de conta com senhas criptografadas e login com emissão de token JWT.
-- **Proteção de Rotas:** Uso de `JwtAuthGuard` para garantir que apenas usuários autenticados acessem dados sensíveis.
-- **Gestão de Perfil:** CRUD completo de informações do usuário.
+------------------------------------------------------------------------
+
+## 🧠 Stack Tecnológica
+
+### Backend
+
+-   **NestJS**
+-   **TypeScript**
+-   **Prisma ORM**
+-   **MySQL**
+
+### 🔐 Autenticação & Segurança
+
+-   JWT (Passport.js)
+-   bcrypt (hash de senhas)
+-   helmet (proteção HTTP)
+-   class-validator (validação de DTOs)
+
+### 📊 Documentação
+
+-   Swagger (OpenAPI)
+
+### 🧪 Testes
+
+-   Jest
+-   Supertest
+
+------------------------------------------------------------------------
+
+## 📌 Funcionalidades
+
+### 🔐 Gestão de Usuários
+
+-   Registro com senha criptografada
+-   Login com geração de JWT
+-   Proteção de rotas com Guards
+-   CRUD completo de perfil
 
 ### 🍱 Gestão Nutricional
-- **Foods:** Banco de dados de alimentos com valores nutricionais.
-- **Meals:** Registro de refeições compostas por diferentes alimentos.
-- **Carb History:** Histórico cronológico de consumo de carboidratos.
 
-### 📈 Metas e Relatórios
-- **Goals:** Definição de objetivos diários de ingestão.
-- **Intelligent Reports:** Endpoints dedicados para extração de métricas de consumo:
-  - Consumo Diário.
-  - Consumo Semanal.
-  - Consumo Mensal.
+-   Cadastro de alimentos com valores nutricionais
+-   Registro de refeições compostas por múltiplos alimentos
+-   Histórico cronológico de consumo
 
----
+### 📈 Relatórios Inteligentes
 
-## ⚙️ Como Instalar e Rodar
+-   Consumo diário
+-   Consumo semanal
+-   Consumo mensal
 
-1. **Clone o repositório:**
-   bash
-  `git clone [https://github.com/gouvei4/fit-project.git](https://github.com/gouvei4/fit-project.git)
-   cd fit-project`
+------------------------------------------------------------------------
 
-2. **Instale as dependências:**
-  `npm install`
+## 🏗 Arquitetura
 
-3. **Configure as variáveis de ambiente (.env):**
-    Crie um arquivo .env na raiz do projeto e preencha conforme sua configuração local:
-   `DATABASE_URL="mysql://usuario:senha@localhost:3306/fit_project_db"
-    JWT_SECRET="sua_chave_secreta_aqui"`
+O projeto segue a arquitetura padrão do NestJS:
 
-4. **Prepare o Banco de Dados (Prisma)**
-   Execute as migrations para criar as tabelas no MySQL e gerar o Prisma Client:
-   `npx prisma migrate dev --name init
-    npx prisma generate`
-   
-5. **Inicie a aplicação**
-    # Modo de desenvolvimento
-      `npm run start:dev`
+-   Controllers → Camada de entrada HTTP
+-   Services → Regras de negócio
+-   DTOs → Validação de dados
+-   Guards → Proteção de rotas
+-   Prisma → Camada de persistência
 
-    # Modo de produção
-      `npm run build
-      npm run start:prod`
+Estrutura preparada para crescimento e aplicação em ambiente de
+produção.
 
-📖 **Documentação (Swagger)**
-     A API conta com documentação interativa que pode ser acessada através da rota:
+------------------------------------------------------------------------
 
-    👉` http://localhost:3000/api`
+## ⚙️ Como Executar
 
-    Lá você encontrará todos os modelos de dados, exemplos de requisição e poderá testar os endpoints utilizando o Bearer Token gerado no login.
+``` bash
+git clone https://github.com/gouvei4/fit-project.git
+cd fit-project
+npm install
+```
 
-🧪 **Estrutura de Testes**
-      O projeto utiliza Jest para garantir a confiabilidade das regras de negócio:
-      # Executar todos os testes
-      `npm run test`
+Configure o arquivo `.env`:
 
-      # Executar testes end-to-end (E2E)
-      npm run test:e2e
+``` env
+DATABASE_URL="mysql://usuario:senha@localhost:3306/fit_project_db"
+JWT_SECRET="sua_chave_secreta_aqui"
+```
 
-      # Cobertura de código (Coverage)
-       npm run test:cov
+Execute as migrations:
 
-  ✨ **Autor**
-      Afonso Gouveia Engenheiro de Software focado no desenvolvimento de aplicações escaláveis e seguras.
+``` bash
+npx prisma migrate dev --name init
+npx prisma generate
+```
+
+Rodar aplicação:
+
+``` bash
+npm run start:dev
+```
+
+Swagger disponível em:
+
+    http://localhost:3000/api
+
+------------------------------------------------------------------------
+
+## 🧪 Testes
+
+``` bash
+npm run test
+npm run test:e2e
+npm run test:cov
+```
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Autor
+
+**Afonso Gouveia**\
+Engenheiro de Software focado em backend com Node.js, arquitetura
+escalável e aplicações seguras.
+
+GitHub: https://github.com/gouvei4
